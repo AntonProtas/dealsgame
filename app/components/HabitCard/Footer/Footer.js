@@ -8,14 +8,16 @@ import { Container, IconButton } from './Footer.style';
 import EditIcon from '@assets/svg/edit.svg';
 import DeleteIcon from '@assets/svg/delete.svg';
 
-const Footer = () => {
+const Footer = ({ onDelete, onEdit }) => {
   return (
     <Container>
       <IconButton
+        onPress={onEdit}
         appearance="ghost"
         accessoryLeft={() => <EditIcon width={30} height={30} fill="black" />}
       />
       <IconButton
+        onPress={onDelete}
         appearance="ghost"
         accessoryLeft={() => <DeleteIcon width={30} height={30} fill="black" />}
       />

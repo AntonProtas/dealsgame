@@ -15,7 +15,7 @@ export const HabitIconContainer = styled.View`
   width: 65px;
   height: 65px;
   margin: 10px 0 10px 0;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   border-radius: 33px;
 `;
 

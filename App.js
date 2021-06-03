@@ -4,7 +4,7 @@
 //libs
 import React from 'react';
 import * as eva from '@eva-design/eva';
-
+import { PersistGate } from 'redux-persist/integration/react';
 //screens
 // import { SignUpScreen } from '@screens/SignUpScreen';
 import { HabitsScreen, SignUpScreen } from '@screens';
@@ -17,15 +17,17 @@ import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { Provider } from 'react-redux';
 
 //store
-import store from '@store';
+import store, { persistor } from '@store';
 
 export default () => (
   <>
     <Provider store={store}>
-      <IconRegistry icons={EvaIconsPack} />
-      <ApplicationProvider {...eva} theme={eva.light}>
-        <HabitsScreen />
-      </ApplicationProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <IconRegistry icons={EvaIconsPack} />
+        <ApplicationProvider {...eva} theme={eva.light}>
+          <HabitsScreen />
+        </ApplicationProvider>
+      </PersistGate>
     </Provider>
   </>
 );

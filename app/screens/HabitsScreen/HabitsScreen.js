@@ -1,49 +1,69 @@
 //libs
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
+import { StyleSheet } from 'react-native';
 
 //components
 import { HabitsList, AddNewHabitButton, PlusIcon } from './HabitsScreen.style';
 import { Layout } from '@ui-kitten/components';
-
-//mock
-import { items } from './mock-items.js';
-
-//components
 import { HabitCard } from '@components';
-import { AddHabitModal } from '@modals';
+import { HabitModal } from '@modals';
 
 //hooks
-import { useToggle } from '@hooks';
-
-import { StyleSheet } from 'react-native';
+import { useHabits, useToggle } from '@hooks';
 
 const HabitsScreen = () => {
-  const [addHabitModalIsOpen, setAddHabitModalIsOpen] = useToggle();
+  const {
+    habits,
+    handleAddNewHabit,
+    handleRemoveHabit,
+    handleEditHabit
+  } = useHabits();
 
-  const renderItem = (info) => {
-    return <HabitCard {...info.item} />;
-  };
+  const [habitModalIsOpen, setHabitModalIsOpen] = useToggle();
 
   const handleCloseAddHabitModal = useCallback(() => {
-    setAddHabitModalIsOpen(false);
-  }, [setAddHabitModalIsOpen]);
+    setHabitModalIsOpen(false);
+    setEditableHabit(null);
+  }, [setHabitModalIsOpen]);
 
+  const [editableHabit, setEditableHabit] = useState(null);
+
+  const handleOpenEditModal = (habit) => {
+    setEditableHabit(habit);
+
+    setHabitModalIsOpen(true);
+  };
+
+  const renderItem = (info) => (
+    <HabitCard
+      {...info.item}
+      onDelete={handleRemoveHabit}
+      onEdit={handleOpenEditModal}
+    />
+  );
   return (
     <Layout>
       <HabitsList
-        data={items}
+        data={habits.results}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         // eslint-disable-next-line react-native/no-inline-styles
         contentContainerStyle={{ paddingBottom: 100 }}
       />
       <AddNewHabitButton
+        activeOpacity={0.7}
         style={styles.shadow}
-        onPress={() => setAddHabitModalIsOpen(true)}
+        onPress={() => setHabitModalIsOpen(true)}
       >
         <PlusIcon name="plus-outline" fill="black" />
       </AddNewHabitButton>
-      <AddHabitModal isOpen={true} onClose={handleCloseAddHabitModal} />
+      <HabitModal
+        isOpen={habitModalIsOpen}
+        onClose={handleCloseAddHabitModal}
+        onAddNewHabit={handleAddNewHabit}
+        onEditHabit={handleEditHabit}
+        editableHabit={editableHabit}
+      />
     </Layout>
   );
 };
@@ -57,11 +77,8 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.27,
     shadowRadius: 4.65,
-
     elevation: 6
   }
 });
-
-export { HabitCard };
 
 export { HabitsScreen };

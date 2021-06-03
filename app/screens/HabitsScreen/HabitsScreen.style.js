@@ -32,7 +32,7 @@ export const PlusIcon = styled(Icon)`
 
 export const HabitsList = styled.FlatList`
   flex-grow: 1;
-  background-color: white;
+  background-color: rgb(250, 249, 247);
   padding-bottom: 200px;
 `;
 

@@ -1,6 +1,7 @@
 //libs
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { createLogger } from 'redux-logger';
+import { persistStore } from 'redux-persist';
 
 //reducer
 import { rootReducer } from './rootReducer';
@@ -30,3 +31,5 @@ const store = configureStore({
 });
 
 export default store;
+
+export const persistor = persistStore(store);

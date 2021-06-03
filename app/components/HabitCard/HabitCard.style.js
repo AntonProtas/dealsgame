@@ -7,7 +7,7 @@ import { Text } from '@ui-kitten/components';
 export const Card = styled.View`
   padding: 20px 24px;
   border-radius: 16px;
-  margin: 8px;
+  margin: 20px;
   background-color: white;
 `;
 
