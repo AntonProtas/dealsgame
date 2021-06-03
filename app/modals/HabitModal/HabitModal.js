@@ -125,7 +125,9 @@ const HabitModal = ({
               onPress={handleSubmit}
               disabled={!isDirty || !isValid}
             >
-              <SubmitButtonText>start a habit</SubmitButtonText>
+              <SubmitButtonText>
+                {isEdit ? 'edit the habit' : 'start a habit'}
+              </SubmitButtonText>
             </SubmitButton>
           </Section>
         </ScrollView>
