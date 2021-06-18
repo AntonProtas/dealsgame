@@ -8,8 +8,8 @@ export const BalanceContainer = styled.View`
 
 export const BalanceCount = styled.Text`
   font-weight: 700;
-  font-size: 21px;
+  font-size: 24px;
+  /* color: black; */
   color: #54c0eb;
-  /* color: #54c0eb; */
-  padding-left: 8px;
+  padding: 0 8px;
 `;

@@ -19,8 +19,22 @@ export const HabitIconContainer = styled.View`
   border-radius: 33px;
 `;
 
-export const Title = styled(Text)`
+export const TitleContainer = styled.View`
   padding: 12px 20px;
   flex: 1;
+`;
+
+export const Title = styled(Text)`
+  margin-bottom: 8px;
   font-weight: 700;
+`;
+
+export const CountContainer = styled.View`
+  flex-direction: row;
+`;
+
+export const Count = styled.Text`
+  font-size: 16px;
+  line-height: 18px;
+  color: rgb(98, 98, 98);
 `;

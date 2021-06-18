@@ -2,16 +2,33 @@
 import React from 'react';
 
 //components
-import { Container, HabitIconContainer, Title } from './Header.style';
-import DefaultHabitIcon from '@assets/svg/default_habit.svg';
+import {
+  Container,
+  HabitIconContainer,
+  TitleContainer,
+  Title,
+  CountContainer,
+  Count
+} from './Header.style';
 
-const Header = ({ name }) => {
+//icons
+import DefaultHabitIcon from '@assets/svg/default_habit.svg';
+import DiamondIcon from '@assets/svg/diamond.svg';
+
+const Header = ({ name, isGood, isBad, price, award }) => {
   return (
     <Container>
       <HabitIconContainer>
         <DefaultHabitIcon width={45} height={45} fill="black" />
       </HabitIconContainer>
-      <Title category="h5">{name}</Title>
+      <TitleContainer>
+        <Title category="h5">{name}</Title>
+        <CountContainer>
+          <Count>{`The ${isGood ? 'award' : 'price'} is will be `}</Count>
+          <DiamondIcon width={18} height={18} />
+          <Count>{isGood ? award : price}</Count>
+        </CountContainer>
+      </TitleContainer>
     </Container>
   );
 };
