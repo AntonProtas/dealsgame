@@ -10,7 +10,8 @@ export const Container = styled.View`
 `;
 
 export const IconButton = styled(Button)`
-  width: 30px;
-  height: 30px;
+  width: 60px;
+  height: 60px;
   margin: 2px;
+  border-radius: 30px;
 `;

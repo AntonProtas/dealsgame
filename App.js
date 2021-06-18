@@ -10,26 +10,11 @@ import { Provider } from 'react-redux';
 //components
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { Header } from '@components';
+import RootNavigator from '@navigation/RootNavigator';
 
 //store
 import store, { persistor } from '@store';
-
-import RootNavigator from '@navigation/RootNavigator';
-
-import {
-  Icon,
-  Text,
-  TopNavigation,
-  TopNavigationAction,
-  Layout
-} from '@ui-kitten/components';
-
-const TopNavigationStyling = () => (
-  <TopNavigation
-    title={(evaProps) => <Text {...evaProps}>Title</Text>}
-    subtitle={(evaProps) => <Text {...evaProps}>Subtitle</Text>}
-  />
-);
 
 export default () => (
   <>
@@ -37,7 +22,7 @@ export default () => (
       <PersistGate loading={null} persistor={persistor}>
         <IconRegistry icons={EvaIconsPack} />
         <ApplicationProvider {...eva} theme={eva.light}>
-          <TopNavigationStyling />
+          <Header />
           <RootNavigator />
         </ApplicationProvider>
       </PersistGate>

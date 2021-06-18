@@ -2,7 +2,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HabitsScreen, SignUpScreen } from '../screens';
+import { GoodHabitsScreen, BadHabitsScreen } from '../screens';
 
 import { NavigationIcon } from './NavigationIcon';
 
@@ -25,8 +25,8 @@ const RootNavigator = () => {
           )
         })}
       >
-        <Tab.Screen name="GoodHabits" component={HabitsScreen} />
-        <Tab.Screen name="BadHabits" component={SignUpScreen} />
+        <Tab.Screen name="GoodHabits" component={GoodHabitsScreen} />
+        <Tab.Screen name="BadHabits" component={BadHabitsScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

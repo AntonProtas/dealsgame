@@ -8,10 +8,18 @@ import Footer from './Footer';
 
 import { StyleSheet } from 'react-native';
 
-const HabitCard = ({ id, name, description, onDelete, onEdit }) => {
+const HabitCard = ({
+  id,
+  name,
+  description,
+  onDelete,
+  onEdit,
+  price,
+  award
+}) => {
   const handleDeleteCard = () => onDelete(id);
 
-  const handleEditCard = () => onEdit({ id, name, description });
+  const handleEditCard = () => onEdit({ id, name, description, price, award });
 
   return (
     <Card style={styles.shadow} status="basic">

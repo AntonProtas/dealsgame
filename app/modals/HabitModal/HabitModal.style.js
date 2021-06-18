@@ -10,10 +10,12 @@ export const Container = styled.View`
   padding: 12px;
 `;
 
+//rgb(250, 249, 247);
+
 export const CloseButton = styled(Button)`
   width: 60px;
   height: 60px;
-  margin: 2px;
+  margin-left: auto;
 `;
 
 export const Description = styled.Text`
@@ -29,6 +31,11 @@ export const Header = styled.View`
 
 export const Title = styled(Text)`
   font-weight: 700;
+`;
+
+export const ExtraTitle = styled.Text`
+  font-weight: 700;
+  font-size: 48px;
 `;
 
 export const TextInput = styled.TextInput`

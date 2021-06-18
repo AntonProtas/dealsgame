@@ -1,5 +1,5 @@
 //libs
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 //selectors
@@ -14,6 +14,17 @@ import {
 
 export const useHabits = () => {
   const habits = useSelector(getHabits);
+  console.log('useHabits', habits.results);
+
+  const goodHabits = useMemo(
+    () => habits.results.filter((habit) => habit.isGood),
+    [habits]
+  );
+
+  const badHabits = useMemo(
+    () => habits.results.filter((habit) => habit.isBad),
+    [habits]
+  );
 
   const dispatch = useDispatch();
 
@@ -40,6 +51,8 @@ export const useHabits = () => {
 
   return {
     habits,
+    goodHabits,
+    badHabits,
     handleAddNewHabit,
     handleRemoveHabit,
     handleEditHabit

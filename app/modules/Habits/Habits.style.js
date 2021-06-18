@@ -2,8 +2,7 @@
 import styled from 'styled-components/native';
 
 //components
-import { Icon } from '@ui-kitten/components';
-import { Button } from '@ui-kitten/components';
+import { Layout as KittenLayout, Icon, Button } from '@ui-kitten/components';
 
 export const AddNewHabitButton = styled.TouchableOpacity`
   position: absolute;
@@ -33,12 +32,6 @@ export const PlusIcon = styled(Icon)`
 export const HabitsList = styled.FlatList`
   flex-grow: 1;
   background-color: rgb(250, 249, 247);
-  padding-bottom: 200px;
-`;
-
-export const EmptyBlock = styled.View`
-  flex: 1;
-  height: 200px;
-  min-height: 200px;
-  background-color: green;
+  min-height: 100%;
+  /* padding-bottom: 200px; */
 `;

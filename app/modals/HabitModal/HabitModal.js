@@ -8,17 +8,18 @@ import isEmpty from 'lodash/isEmpty';
 import { v4 as uuidv4 } from 'uuid';
 
 //components
-import { Modal, ScrollView } from 'react-native';
+import { Modal, ScrollView, View } from 'react-native';
 import {
   Container,
   CloseButton,
   Title,
   Header,
   SubmitButton,
-  SubmitButtonText
+  SubmitButtonText,
+  ExtraTitle
 } from './HabitModal.style';
 import CloseIcon from '@assets/svg/close.svg';
-import { Section, TextInput } from '@components';
+import { Section, TextInput, NumberInput } from '@components';
 
 //schema
 import { habitSchema } from './habitSchema';
@@ -28,7 +29,8 @@ const HabitModal = ({
   onEditHabit,
   onClose,
   isOpen,
-  editableHabit
+  editableHabit,
+  isBadHabit
 }) => {
   const isEdit = !isEmpty(editableHabit);
 
@@ -42,14 +44,11 @@ const HabitModal = ({
     resolver: yupResolver(habitSchema)
   });
 
-  console.log(1);
-
-  console.log('form values', getValues());
-
   const handleAddNewHabit = () => {
     onAddNewHabit({
       id: uuidv4(),
-      ...pickBy(getValues())
+      ...pickBy(getValues()),
+      ...(isBadHabit ? { isBad: true } : { isGood: true })
     });
 
     reset();
@@ -75,12 +74,35 @@ const HabitModal = ({
     onClose();
   };
 
+  const getDefaultCount = () => {
+    if (!isEdit) {
+      return 10;
+    } else {
+      return isBadHabit
+        ? editableHabit?.price ?? 10
+        : editableHabit?.award ?? 10;
+    }
+  };
+
+  const count = getDefaultCount();
+
+  console.log('isEdit', isEdit);
+
+  console.log('count', count);
+
+  console.log('editableHabit', editableHabit);
+
   return (
     <Modal visible={isOpen} animationType="slide" transparent={false}>
       <Container>
         <ScrollView>
           <Header>
-            <Title category="h3">form a new habit</Title>
+            <View>
+              <Title category="h3">form {isEdit ? 'edit ' : 'a new '}</Title>
+              <ExtraTitle>{!isBadHabit ? 'GOOD' : 'BAD'}</ExtraTitle>
+              <Title category="h3">habit</Title>
+            </View>
+
             <CloseButton
               onPress={handleCloseModal}
               appearance="ghost"
@@ -116,6 +138,20 @@ const HabitModal = ({
                   label="description"
                   placeholder="description"
                   isTextArea
+                />
+              )}
+            />
+          </Section>
+          <Section>
+            <Controller
+              control={control}
+              name={isBadHabit ? 'price' : 'award'}
+              defaultValue={count}
+              render={({ field: { onChange, value } }) => (
+                <NumberInput
+                  value={value}
+                  onChange={onChange}
+                  label={isBadHabit ? 'price' : 'award'}
                 />
               )}
             />
