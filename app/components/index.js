@@ -5,3 +5,4 @@ export * from './TextInput/TextInput';
 export * from './Header/Header';
 export * from './Switch/Switch';
 export * from './NumberInput/NumberInput';
+export * from './NoItems/NoItems';

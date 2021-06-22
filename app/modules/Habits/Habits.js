@@ -1,9 +1,10 @@
 //libs
 import React, { useCallback, useState } from 'react';
+import isEmpty from 'lodash/isEmpty';
 
 //components
 import { HabitsList, AddNewHabitButton, PlusIcon } from './Habits.style';
-import { HabitCard } from '@components';
+import { HabitCard, NoItems } from '@components';
 import { HabitModal, ConfirmModal } from '@modals';
 import { Layout } from '@ui-kitten/components';
 
@@ -26,6 +27,8 @@ const Habits = ({ isBadHabits = false }) => {
 
   const [modal, setModal] = useState(null);
   const [selectedHabit, setSelectedHabit] = useState(null);
+
+  const habitsIsEmpty = isEmpty(habits);
 
   const handleCloseModal = useCallback(() => {
     setModal(null);
@@ -55,21 +58,29 @@ const Habits = ({ isBadHabits = false }) => {
     />
   );
   return (
-    <Layout level="1">
-      <HabitsList
-        data={habits}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        // eslint-disable-next-line react-native/no-inline-styles
-        contentContainerStyle={{ paddingBottom: 100 }}
-      />
-      <AddNewHabitButton
-        activeOpacity={0.7}
-        style={shadow.default}
-        onPress={() => setModal('habit')}
-      >
-        <PlusIcon name="plus-outline" fill="black" />
-      </AddNewHabitButton>
+    <>
+      <Layout level="1">
+        {habitsIsEmpty ? (
+          <NoItems />
+        ) : (
+          <>
+            <HabitsList
+              data={habits}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.id}
+              // eslint-disable-next-line react-native/no-inline-styles
+              contentContainerStyle={{ paddingBottom: 100 }}
+            />
+          </>
+        )}
+        <AddNewHabitButton
+          activeOpacity={0.7}
+          style={shadow.default}
+          onPress={() => setModal('habit')}
+        >
+          <PlusIcon name="plus-outline" fill="black" />
+        </AddNewHabitButton>
+      </Layout>
       <HabitModal
         isOpen={modal === 'habit'}
         onClose={handleCloseModal}
@@ -84,7 +95,7 @@ const Habits = ({ isBadHabits = false }) => {
         onClose={handleCloseModal}
         title="Are you sure you want to delete this habit?"
       />
-    </Layout>
+    </>
   );
 };
 
