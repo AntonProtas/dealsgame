@@ -10,9 +10,9 @@ import Footer from './Footer';
 import { shadow } from '@styles';
 
 const HabitCard = ({ ...habit }) => {
-  const { id, description, onDelete, onEdit } = habit;
+  const { description, onDelete, onEdit } = habit;
 
-  const handleDeleteCard = () => onDelete(id);
+  const handleDeleteCard = () => onDelete(habit);
 
   const handleEditCard = () => onEdit(habit);
 

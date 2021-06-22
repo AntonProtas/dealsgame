@@ -4,14 +4,14 @@ import React, { useCallback, useState } from 'react';
 //components
 import { HabitsList, AddNewHabitButton, PlusIcon } from './Habits.style';
 import { HabitCard } from '@components';
-import { HabitModal } from '@modals';
+import { HabitModal, ConfirmModal } from '@modals';
 import { Layout } from '@ui-kitten/components';
 
 //styles
 import { shadow } from '@styles';
 
 //hooks
-import { useHabits, useToggle } from '@hooks';
+import { useHabits } from '@hooks';
 
 const Habits = ({ isBadHabits = false }) => {
   const {
@@ -24,25 +24,33 @@ const Habits = ({ isBadHabits = false }) => {
 
   const habits = isBadHabits ? badHabits : goodHabits;
 
-  const [habitModalIsOpen, setHabitModalIsOpen] = useToggle();
+  const [modal, setModal] = useState(null);
+  const [selectedHabit, setSelectedHabit] = useState(null);
 
-  const handleCloseAddHabitModal = useCallback(() => {
-    setHabitModalIsOpen(false);
-    setEditableHabit(null);
-  }, [setHabitModalIsOpen]);
-
-  const [editableHabit, setEditableHabit] = useState(null);
+  const handleCloseModal = useCallback(() => {
+    setModal(null);
+    setSelectedHabit(null);
+  }, [setModal]);
 
   const handleOpenEditModal = (habit) => {
-    setEditableHabit(habit);
+    setSelectedHabit(habit);
+    setModal('habit');
+  };
 
-    setHabitModalIsOpen(true);
+  const handleOpenConfirmModal = (habit) => {
+    setSelectedHabit(habit);
+    setModal('confirm');
+  };
+
+  const handleDeleteHabit = () => {
+    handleRemoveHabit(selectedHabit?.id);
+    handleCloseModal();
   };
 
   const renderItem = (info) => (
     <HabitCard
       {...info.item}
-      onDelete={handleRemoveHabit}
+      onDelete={handleOpenConfirmModal}
       onEdit={handleOpenEditModal}
     />
   );
@@ -58,17 +66,23 @@ const Habits = ({ isBadHabits = false }) => {
       <AddNewHabitButton
         activeOpacity={0.7}
         style={shadow.default}
-        onPress={() => setHabitModalIsOpen(true)}
+        onPress={() => setModal('habit')}
       >
         <PlusIcon name="plus-outline" fill="black" />
       </AddNewHabitButton>
       <HabitModal
-        isOpen={habitModalIsOpen}
-        onClose={handleCloseAddHabitModal}
+        isOpen={modal === 'habit'}
+        onClose={handleCloseModal}
         onAddNewHabit={handleAddNewHabit}
         onEditHabit={handleEditHabit}
-        editableHabit={editableHabit}
+        editableHabit={selectedHabit}
         isBadHabit={isBadHabits}
+      />
+      <ConfirmModal
+        isOpen={modal === 'confirm'}
+        onSubmit={handleDeleteHabit}
+        onClose={handleCloseModal}
+        title="Are you sure you want to delete this habit?"
       />
     </Layout>
   );

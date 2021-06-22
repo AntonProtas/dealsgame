@@ -86,12 +86,6 @@ const HabitModal = ({
 
   const count = getDefaultCount();
 
-  console.log('isEdit', isEdit);
-
-  console.log('count', count);
-
-  console.log('editableHabit', editableHabit);
-
   return (
     <Modal visible={isOpen} animationType="slide" transparent={false}>
       <Container>

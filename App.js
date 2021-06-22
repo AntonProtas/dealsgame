@@ -4,9 +4,6 @@ import * as eva from '@eva-design/eva';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 
-//screens
-// import { HabitsScreen, SignUpScreen } from '@screens';
-
 //components
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
