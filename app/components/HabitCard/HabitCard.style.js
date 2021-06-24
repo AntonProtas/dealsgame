@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 //components
 import { Text } from '@ui-kitten/components';
 
-export const Card = styled.View`
+export const Card = styled.TouchableOpacity`
   padding: 20px 24px;
   border-radius: 16px;
   margin: 20px;

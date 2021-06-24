@@ -10,23 +10,24 @@ import {
   addNewHabitAction,
   deleteHabitAction,
   editHabitAction
-} from '@store/habits/slice.js';
+} from '@store/habits/slice';
 
-export const useHabits = () => {
-  const habits = useSelector(getHabits);
-  console.log('useHabits', habits.results);
+export const useHabits = ({ isBadHabits }) => {
+  const dispatch = useDispatch();
+
+  const allHabits = useSelector(getHabits);
 
   const goodHabits = useMemo(
-    () => habits.results.filter((habit) => habit.isGood),
-    [habits]
+    () => allHabits.results.filter((habit) => habit.isGood),
+    [allHabits]
   );
 
   const badHabits = useMemo(
-    () => habits.results.filter((habit) => habit.isBad),
-    [habits]
+    () => allHabits.results.filter((habit) => habit.isBad),
+    [allHabits]
   );
 
-  const dispatch = useDispatch();
+  const habits = isBadHabits ? badHabits : goodHabits;
 
   const handleAddNewHabit = useCallback(
     (habit) => {

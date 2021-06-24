@@ -5,7 +5,7 @@ import React, { useState, useCallback } from 'react';
 import { ContainerIcons } from './IconPicker.style';
 import { Icon } from './Icon';
 
-const IconPicker = ({ defaultIcons, onIconPress }) => {
+const IconPicker = ({ defaultIcons = [] }) => {
   const [activeIconUrl, setActiveIconUrl] = useState(null);
 
   const handleSetIcon = useCallback((iconUrl) => {
@@ -25,11 +25,6 @@ const IconPicker = ({ defaultIcons, onIconPress }) => {
       ))}
     </ContainerIcons>
   );
-};
-
-IconPicker.defaultProps = {
-  defaultIcons: [],
-  icons: []
 };
 
 export { IconPicker };

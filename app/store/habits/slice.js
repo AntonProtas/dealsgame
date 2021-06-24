@@ -27,10 +27,7 @@ export const habitsSlice = createSlice({
   }
 });
 
-export const {
-  addNewHabitAction,
-  deleteHabitAction,
-  editHabitAction
-} = habitsSlice.actions;
+export const { addNewHabitAction, deleteHabitAction, editHabitAction } =
+  habitsSlice.actions;
 
 export const habitsReducer = habitsSlice.reducer;

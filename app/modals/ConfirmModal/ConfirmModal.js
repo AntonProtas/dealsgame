@@ -24,7 +24,7 @@ const ConfirmModal = ({ isOpen = false, onSubmit, onClose, title }) => {
       backdropStyle={styles.backdrop}
       onBackdropPress={onClose}
     >
-      <Card disabled={true}>
+      <Card>
         {title && <Title>{title}</Title>}
         <Controls>
           <Button style={styles.button} onPress={onClose}>

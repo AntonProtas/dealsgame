@@ -16,15 +16,15 @@ import { shadow } from '@styles';
 //icons
 import DiamondIcon from '@assets/svg/diamond.svg';
 
+import { STEP, MAX_HABIT_COUNT, MIN_HABIT_COUNT } from '@constants';
+
 const NumberInput = ({
   value = 0,
   onChange,
   label,
-  children,
-  step = 10,
-  isPositive = true,
-  max = 100,
-  min = 10
+  step = STEP,
+  max = MAX_HABIT_COUNT,
+  min = MIN_HABIT_COUNT
 }) => {
   return (
     <>

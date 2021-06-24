@@ -12,18 +12,13 @@ import { Layout } from '@ui-kitten/components';
 import { shadow } from '@styles';
 
 //hooks
-import { useHabits } from '@hooks';
+import { useHabits, useUser } from '@hooks';
 
 const Habits = ({ isBadHabits = false }) => {
-  const {
-    handleAddNewHabit,
-    handleRemoveHabit,
-    handleEditHabit,
-    goodHabits,
-    badHabits
-  } = useHabits();
+  const { handleAddNewHabit, handleRemoveHabit, handleEditHabit, habits } =
+    useHabits({ isBadHabits });
 
-  const habits = isBadHabits ? badHabits : goodHabits;
+  const { setBalance } = useUser();
 
   const [modal, setModal] = useState(null);
   const [selectedHabit, setSelectedHabit] = useState(null);
@@ -50,11 +45,15 @@ const Habits = ({ isBadHabits = false }) => {
     handleCloseModal();
   };
 
+  const onCompleteHabit = (count, isGoodHabit) =>
+    setBalance(count, isGoodHabit);
+
   const renderItem = (info) => (
     <HabitCard
       {...info.item}
       onDelete={handleOpenConfirmModal}
       onEdit={handleOpenEditModal}
+      onComplete={onCompleteHabit}
     />
   );
   return (

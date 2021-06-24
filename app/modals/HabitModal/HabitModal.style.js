@@ -10,8 +10,6 @@ export const Container = styled.View`
   padding: 12px;
 `;
 
-//rgb(250, 249, 247);
-
 export const CloseButton = styled(Button)`
   width: 60px;
   height: 60px;

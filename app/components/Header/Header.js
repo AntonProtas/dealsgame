@@ -1,9 +1,5 @@
 //libs
 import React from 'react';
-import { useSelector } from 'react-redux';
-
-//selectors
-import { getBalance } from '@store/user/selectors';
 
 //components
 import { TopNavigation } from '@ui-kitten/components';
@@ -12,8 +8,11 @@ import { BalanceContainer, BalanceCount } from './Header.style';
 //icons
 import DiamondIcon from '@assets/svg/diamond.svg';
 
+//hooks
+import { useUser } from '@hooks';
+
 const Header = () => {
-  const balance = useSelector(getBalance);
+  const { balance } = useUser();
 
   return (
     <TopNavigation

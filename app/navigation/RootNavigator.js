@@ -2,7 +2,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { GoodHabitsScreen, BadHabitsScreen } from '../screens';
+import { GoodHabitsScreen, BadHabitsScreen } from '@screens';
 
 import { NavigationIcon } from './NavigationIcon';
 
@@ -16,7 +16,7 @@ const RootNavigator = () => {
         tabBarOptions={{
           showLabel: false,
           style: {
-            height: '7%'
+            height: 54
           }
         }}
         screenOptions={({ route }) => ({

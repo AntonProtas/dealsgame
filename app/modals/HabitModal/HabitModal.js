@@ -4,7 +4,6 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import pickBy from 'lodash/pickBy';
 import isEmpty from 'lodash/isEmpty';
-
 import { v4 as uuidv4 } from 'uuid';
 
 //components
@@ -28,7 +27,7 @@ const HabitModal = ({
   onAddNewHabit,
   onEditHabit,
   onClose,
-  isOpen,
+  isOpen = false,
   editableHabit,
   isBadHabit
 }) => {
@@ -44,6 +43,11 @@ const HabitModal = ({
     resolver: yupResolver(habitSchema)
   });
 
+  const handleCloseModal = () => {
+    reset();
+    onClose();
+  };
+
   const handleAddNewHabit = () => {
     onAddNewHabit({
       id: uuidv4(),
@@ -51,9 +55,7 @@ const HabitModal = ({
       ...(isBadHabit ? { isBad: true } : { isGood: true })
     });
 
-    reset();
-
-    onClose();
+    handleCloseModal();
   };
 
   const handleEditHabit = () => {
@@ -62,16 +64,7 @@ const HabitModal = ({
       ...pickBy(getValues())
     });
 
-    reset();
-
-    onClose();
-  };
-
-  const handleSubmit = isEdit ? handleEditHabit : handleAddNewHabit;
-
-  const handleCloseModal = () => {
-    reset();
-    onClose();
+    handleCloseModal();
   };
 
   const getDefaultCount = () => {
@@ -86,6 +79,8 @@ const HabitModal = ({
 
   const count = getDefaultCount();
 
+  const handleSubmit = isEdit ? handleEditHabit : handleAddNewHabit;
+
   return (
     <Modal visible={isOpen} animationType="slide" transparent={false}>
       <Container>
@@ -96,7 +91,6 @@ const HabitModal = ({
               <ExtraTitle>{!isBadHabit ? 'GOOD' : 'BAD'}</ExtraTitle>
               <Title category="h3">habit</Title>
             </View>
-
             <CloseButton
               onPress={handleCloseModal}
               appearance="ghost"
@@ -164,11 +158,6 @@ const HabitModal = ({
       </Container>
     </Modal>
   );
-};
-
-HabitModal.defaultProps = {
-  isOpen: false,
-  isEdit: false
 };
 
 export { HabitModal };
