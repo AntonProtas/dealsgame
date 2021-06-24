@@ -28,6 +28,7 @@ const HabitCard = ({ ...habit }) => {
       style={shadow.card}
       activeOpacity={0.7}
       onLongPress={handleCompleteCard}
+      delayLongPress={900}
     >
       <Header {...habit} />
       {description && <Description category="s1">{description}</Description>}
