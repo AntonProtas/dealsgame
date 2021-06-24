@@ -13,6 +13,9 @@ import RootNavigator from '@navigation/RootNavigator';
 //store
 import store, { persistor } from '@store';
 
+//screens
+// import { TestScreen } from '@screens';
+
 export default () => (
   <>
     <Provider store={store}>
