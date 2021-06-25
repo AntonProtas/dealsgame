@@ -56,6 +56,7 @@ const Habits = ({ isBadHabits = false }) => {
       onComplete={onCompleteHabit}
     />
   );
+
   return (
     <>
       <Layout level="1">
@@ -69,6 +70,8 @@ const Habits = ({ isBadHabits = false }) => {
               keyExtractor={(item) => item.id}
               // eslint-disable-next-line react-native/no-inline-styles
               contentContainerStyle={{ paddingBottom: 100 }}
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}
             />
           </>
         )}
