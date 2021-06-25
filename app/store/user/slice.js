@@ -1,10 +1,8 @@
 //libs
 import { createSlice } from '@reduxjs/toolkit';
 
-import { DEFAULT_USER_BALANCE, MIN_USER_BALANCE } from '@constants';
-
 const initialState = {
-  balance: DEFAULT_USER_BALANCE
+  balance: 0
 };
 
 export const userSlice = createSlice({
@@ -12,11 +10,14 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     increaseBalanceAction: (state, { payload }) => {
-      state.balance = state.balance + Math.abs(payload);
+      console.log('state.balance', state.balance);
+      console.log('payload', payload);
+
+      state.balance = Number(state.balance) + Number(payload);
     },
     decreaseBalanceAction: (state, { payload }) => {
-      if (state.balance > MIN_USER_BALANCE) {
-        state.balance = state.balance - Math.abs(payload);
+      if (state.balance >= payload) {
+        state.balance = Number(state.balance) - Number(payload);
       }
     }
   }

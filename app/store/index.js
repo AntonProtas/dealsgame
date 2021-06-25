@@ -1,7 +1,15 @@
 //libs
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { createLogger } from 'redux-logger';
-import { persistStore } from 'redux-persist';
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  persistStore,
+  PURGE,
+  REGISTER,
+  REHYDRATE
+} from 'redux-persist';
 
 //reducer
 import { rootReducer } from './rootReducer';
@@ -10,7 +18,9 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 
 const middleware = getDefaultMiddleware({
   immutableCheck: false,
-  serializableCheck: false,
+  serializableCheck: {
+    ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+  },
   thunk: true
 });
 

@@ -3,11 +3,14 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
+    "a": "npx react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx"
+    "lint": "eslint . --ext .js,.jsx",
+    "android-build-release": "cd android && ./gradlew assembleRelease",
+    "android-install-latest": "adb install android/app/build/outputs/apk/release/app-release.apk",
+    "android-open-release": "cd android/app/build/outputs/apk/release/ && mv app-release.apk rk-$(date +%y%m%d).apk && open ."
   },
   "dependencies": {
     "@eva-design/eva": "2.0.0",
