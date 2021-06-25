@@ -7,7 +7,7 @@ import { Text } from '@ui-kitten/components';
 export const Card = styled.TouchableOpacity`
   padding: 20px 24px;
   border-radius: 16px;
-  margin: 20px;
+  margin: 10px 16px;
   background-color: white;
 `;
 
