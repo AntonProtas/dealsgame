@@ -84,7 +84,10 @@ const HabitModal = ({
   return (
     <Modal visible={isOpen} animationType="slide" transparent={false}>
       <Container>
-        <ScrollView>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+        >
           <Header>
             <View>
               <Title category="h3">form {isEdit ? 'edit ' : 'a new '}</Title>
