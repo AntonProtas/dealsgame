@@ -15,7 +15,7 @@ import {
 import DefaultHabitIcon from '@assets/svg/default_habit.svg';
 import DiamondIcon from '@assets/svg/diamond.svg';
 
-const Header = ({ name, isGood, isBad, price, award }) => {
+const Header = ({ name, isGood, price, award }) => {
   return (
     <Container>
       <HabitIconContainer>
