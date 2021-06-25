@@ -7,13 +7,19 @@ import { persistReducer } from 'redux-persist';
 import { habitsReducer } from './habits/slice';
 import { userReducer } from './user/slice';
 
-const persistConfig = {
-  key: 'root',
+const habitsPersistConfig = {
+  key: 'habits',
   storage: AsyncStorage,
-  whitelist: ['results', 'balance']
+  whitelist: ['results']
+};
+
+const userPersistConfig = {
+  key: 'user',
+  storage: AsyncStorage,
+  whitelist: ['balance']
 };
 
 export const rootReducer = combineReducers({
-  habits: persistReducer(persistConfig, habitsReducer),
-  user: persistReducer(persistConfig, userReducer)
+  habits: persistReducer(habitsPersistConfig, habitsReducer),
+  user: persistReducer(userPersistConfig, userReducer)
 });
