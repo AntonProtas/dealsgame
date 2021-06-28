@@ -87,7 +87,12 @@ const HabitModal = ({
   const handleSubmit = isEdit ? handleEditHabit : handleAddNewHabit;
 
   return (
-    <Modal visible={isOpen} animationType="slide" transparent={false}>
+    <Modal
+      visible={isOpen}
+      animationType="slide"
+      transparent={false}
+      onRequestClose={handleCloseModal}
+    >
       <Container>
         <ScrollView
           showsVerticalScrollIndicator={false}
