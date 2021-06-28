@@ -13,7 +13,9 @@ const styles = StyleSheet.create({
   button: {
     margin: 4,
     height: 50,
-    flex: 1
+    flex: 1,
+    backgroundColor: 'black',
+    borderColor: 'black'
   }
 });
 
