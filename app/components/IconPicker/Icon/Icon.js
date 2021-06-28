@@ -5,13 +5,13 @@ import React, { memo } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { Image } from './Icon.style';
 
-const Icon = memo(({ url, source, onIconPress, isActive }) => {
-  const handleIconPress = () => onIconPress(url);
+const Icon = memo(({ src, iconSource, onIconPress, isActive }) => {
+  const handleIconPress = () => onIconPress(src);
 
   return (
     <TouchableOpacity onPress={handleIconPress}>
       <View>
-        <Image key={url} source={source} isActive={isActive} />
+        <Image source={iconSource} isActive={isActive} />
       </View>
     </TouchableOpacity>
   );

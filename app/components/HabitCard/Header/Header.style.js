@@ -9,14 +9,14 @@ export const Container = styled.View`
   align-items: center;
 `;
 
-export const HabitIconContainer = styled.View`
+export const HabitIcon = styled.Image`
   justify-content: center;
   align-items: center;
-  width: 65px;
-  height: 65px;
+  width: 80px;
+  height: 80px;
   margin: 10px 0 10px 0;
   /* border: 2px solid black; */
-  border-radius: 33px;
+  /* border-radius: 33px; */
 `;
 
 export const TitleContainer = styled.View`

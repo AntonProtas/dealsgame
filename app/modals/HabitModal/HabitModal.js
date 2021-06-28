@@ -18,10 +18,13 @@ import {
   ExtraTitle
 } from './HabitModal.style';
 import CloseIcon from '@assets/svg/close.svg';
-import { Section, TextInput, NumberInput } from '@components';
+import { Section, TextInput, NumberInput, IconPicker } from '@components';
 
 //schema
 import { habitSchema } from './habitSchema';
+
+//constants
+import { goodHabitsIcons, badHabitsIcons } from '@constants';
 
 const HabitModal = ({
   onAddNewHabit,
@@ -42,6 +45,8 @@ const HabitModal = ({
     mode: 'all',
     resolver: yupResolver(habitSchema)
   });
+
+  const icons = isBadHabit ? badHabitsIcons : goodHabitsIcons;
 
   const handleCloseModal = () => {
     reset();
@@ -129,6 +134,21 @@ const HabitModal = ({
                   label="description"
                   placeholder="description"
                   isTextArea
+                />
+              )}
+            />
+          </Section>
+          <Section>
+            <Controller
+              control={control}
+              name="icon"
+              defaultValue={editableHabit?.icon ?? icons[0].src}
+              render={({ field: { onChange, value } }) => (
+                <IconPicker
+                  icons={icons}
+                  label="icon"
+                  onIconChange={onChange}
+                  activeIconSrc={value}
                 />
               )}
             />

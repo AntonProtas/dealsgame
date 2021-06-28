@@ -7,3 +7,5 @@ export const {
   MIN_USER_BALANCE,
   DEFAULT_USER_BALANCE
 } = habits;
+
+export * from './icons';

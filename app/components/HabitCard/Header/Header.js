@@ -4,23 +4,33 @@ import React from 'react';
 //components
 import {
   Container,
-  HabitIconContainer,
+  HabitIcon,
   TitleContainer,
   Title,
   CountContainer,
   Count
 } from './Header.style';
 
+import isEmpty from 'lodash/isEmpty';
+
 //icons
-import DefaultHabitIcon from '@assets/svg/default_habit.svg';
 import DiamondIcon from '@assets/svg/diamond.svg';
 
-const Header = ({ name, isGood, price, award }) => {
+//constants
+import { goodHabitsIcons, badHabitsIcons } from '@constants';
+
+const Header = ({ name, isGood, price, award, icon }) => {
+  const icons = !isGood ? badHabitsIcons : goodHabitsIcons;
+
+  const habitIcon = icons.find((item) => item.src === icon);
+
+  const habitIconSource = !isEmpty(habitIcon)
+    ? habitIcon.iconSource
+    : icons[0].iconSource;
+
   return (
     <Container>
-      <HabitIconContainer>
-        <DefaultHabitIcon width={45} height={45} fill="black" />
-      </HabitIconContainer>
+      {habitIconSource && <HabitIcon source={habitIconSource} />}
       <TitleContainer>
         <Title category="h5">{name}</Title>
         <CountContainer>
