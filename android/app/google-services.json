@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "229861959653",
+    "project_id": "games-habits",
+    "storage_bucket": "games-habits.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:229861959653:android:26c3dce84dc1055c26f10c",
+        "android_client_info": {
+          "package_name": "com.myapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "229861959653-5qjpl33kp9ndtikg6olk9b9igrf5seq8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSK8NN-fZBxv46MykU6sBshH-hvfP61i8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "229861959653-5qjpl33kp9ndtikg6olk9b9igrf5seq8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
