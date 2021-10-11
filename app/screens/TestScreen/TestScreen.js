@@ -8,14 +8,20 @@ import { TouchableOpacity, StyleSheet } from 'react-native';
 //styles
 import { shadow } from '@styles';
 
+import { LocalNotification } from '@api/notifications';
+
 export const TestScreen = () => {
+  const handleButtonPress = () => {
+    LocalNotification();
+  };
+
   return (
     <Layout level="1">
       <Text category="h3">TestScreen</Text>
       <TouchableOpacity
         style={[styles.card, shadow.default]}
         activeOpacity={0.7}
-        onLongPress={() => alert('ALert')}
+        onPress={handleButtonPress}
       />
     </Layout>
   );
