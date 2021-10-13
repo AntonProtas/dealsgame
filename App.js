@@ -14,7 +14,7 @@ import RootNavigator from '@navigation/RootNavigator';
 import store, { persistor } from '@store';
 
 //screens
-// import { TestScreen } from '@screens';
+import { TestScreen } from '@screens';
 
 export default () => (
   <>
@@ -23,7 +23,7 @@ export default () => (
         <IconRegistry icons={EvaIconsPack} />
         <ApplicationProvider {...eva} theme={eva.light}>
           <Header />
-          <RootNavigator />
+          <TestScreen />
         </ApplicationProvider>
       </PersistGate>
     </Provider>
